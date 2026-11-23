@@ -286,3 +286,16 @@ body :where(.hero h1 em,.intro h2 em,.section-head h2 em,.install h2 em,.contact
   background:none;
   filter:none;
 }
+
+/* Expanded Kazakhstan TEYES catalogue */
+.teyes-full-range{align-items:stretch}
+.teyes-full-range .product-card{display:flex;flex-direction:column;min-width:0}
+.teyes-full-range .product-info{display:flex;flex:1;flex-direction:column}
+.teyes-full-range .product-info>a{margin-top:auto}
+.variant-prices{display:grid;gap:8px;margin:18px 0 20px;padding:15px 14px;background:linear-gradient(135deg,rgba(190,24,43,.11),rgba(215,177,91,.055));border:1px solid rgba(220,185,104,.25);border-radius:3px}
+.variant-prices>strong{font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:#e6c875;margin-bottom:2px}
+.variant-prices>span{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:10px;line-height:1.5;color:#c8c0b4}
+.variant-prices>span b{white-space:nowrap;color:#f1d47f;font-size:11px}
+.teyes-full-range .product-image img{object-fit:contain;padding:12px;background:#f5f5f5}
+.teyes-full-range .product-image{background:#f5f5f5}
+@media(max-width:600px){.variant-prices{padding:13px 11px}.variant-prices>span{font-size:9px}.variant-prices>span b{font-size:10px}}
