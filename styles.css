@@ -607,3 +607,24 @@ body{background:#030405!important}
  .faq-list summary{font-size:15px}
  .faq-list details p{font-size:14px;line-height:1.8}
 }
+
+
+/* Expanded service details: PPF and Bi-LED */
+.service-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.service-card.service-feature{padding:0;min-height:0;overflow:hidden;background:linear-gradient(145deg,#1b1918,#0e1013);border-color:#4a3a2b}
+.service-photo{height:245px;position:relative;overflow:hidden;background:#111}
+.service-photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)}
+.service-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease}
+.service-feature:hover .service-photo img{transform:scale(1.035)}
+.service-photo>span{position:absolute;z-index:1;left:22px;bottom:18px;font-size:10px;letter-spacing:1.4px;color:#f1d39b}
+.service-body{padding:26px}
+.service-feature .service-icon{margin:0 0 16px}
+.service-feature h3{font-size:clamp(22px,2.2vw,29px);letter-spacing:.6px;margin:0 0 14px}
+.service-feature p{font-size:14px;line-height:1.85;color:#c1b7aa;min-height:0;margin:0 0 20px}
+.service-subtitle{font-size:10px;letter-spacing:1.4px;color:#dfbd7d;margin:20px 0 12px}
+.service-points{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.service-points li{position:relative;padding-left:19px;font-size:13px;line-height:1.65;color:#e5ddd2}
+.service-points li:before{content:"";position:absolute;left:0;top:.65em;width:7px;height:7px;border:1px solid #d7ad62;transform:rotate(45deg)}
+.service-note{margin:22px 0 8px;padding:14px 15px;border-left:2px solid #a9824c;background:#ffffff08;color:#b9ad9e;font-size:12px;line-height:1.75}
+.service-feature a{font-size:11px;letter-spacing:1.1px;padding-top:16px}
+@media(max-width:760px){.service-grid{grid-template-columns:1fr}.service-photo{height:220px}.service-body{padding:21px}.service-feature p{font-size:14px}.service-points li{font-size:13px}.service-note{font-size:13px}}
