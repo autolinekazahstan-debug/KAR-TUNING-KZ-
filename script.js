@@ -3,15 +3,26 @@ const storeCards=[...document.querySelectorAll('.store-card')];let activeStoreFi
 document.getElementById('lead-form').addEventListener('submit',e=>{
  e.preventDefault();
  const data=new FormData(e.currentTarget);
- const message=['Заявка с сайта KarTuningKZ','Имя: '+(data.get('name')||''),'Телефон: '+(data.get('phone')||''),'Автомобиль: '+[data.get('car_make'),data.get('car_model_year')].filter(Boolean).join(' ')+' (если не указан — уточнить у клиента)','Бюджет: '+(data.get('budget')||'не указан'),'Запрос: '+(data.get('details')||'не указан')].join('\n');
- const encoded=encodeURIComponent(message);
- const chooser=document.createElement('div');
- chooser.className='wa-submit-choices';
- chooser.innerHTML='<p>Выбери, на какой номер отправить заявку:</p><a href="https://wa.me/'+whatsappNumbers[0]+'?text='+encoded+'" target="_blank" rel="noopener noreferrer">WhatsApp 1 · +7 777 307 4939 ↗</a><a href="https://wa.me/'+whatsappNumbers[1]+'?text='+encoded+'" target="_blank" rel="noopener noreferrer">WhatsApp 2 · +7 778 588 0745 ↗</a>';
- const previous=document.querySelector('.wa-submit-choices');
- if(previous)previous.remove();
- e.currentTarget.appendChild(chooser);
- document.getElementById('form-note').textContent='Сообщение подготовлено. Нажми на один из номеров выше и отправь его в открывшемся WhatsApp.';
+ const value=(key,fallback='не указано')=>String(data.get(key)||'').trim()||fallback;
+ const car=[data.get('car_make'),data.get('car_model_year')].filter(Boolean).join(' ');
+ const message=[
+  'НОВАЯ ЗАЯВКА С САЙТА KarTuningKZ',
+  '',
+  'Имя: '+value('name'),
+  'Телефон клиента: '+value('phone'),
+  'Автомобиль: '+(car||'не указан'),
+  'Интересует: '+value('service'),
+  'Бюджет: '+value('budget'),
+  '',
+  'Пожелания клиента:',
+  value('details','Нужна консультация по услуге'),
+  '',
+  'Пожалуйста, свяжитесь с клиентом для уточнения деталей.'
+ ].join('\n');
+ const note=document.getElementById('form-note');
+ note.textContent='Открываем WhatsApp с подготовленной заявкой. Проверь текст в чате и нажми «Отправить» — WhatsApp не позволяет сайту отправлять сообщения без подтверждения пользователя.';
+ const url='https://wa.me/'+whatsappNumbers[0]+'?text='+encodeURIComponent(message);
+ window.location.href=url;
 });
 const aiLauncher=document.getElementById('ai-launcher');
 const aiPanel=document.getElementById('ai-panel');
