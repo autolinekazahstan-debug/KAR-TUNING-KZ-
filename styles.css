@@ -513,3 +513,43 @@ body{background:#030405!important}
 .source-note{margin-top:20px;color:#77746e;font-size:8px;line-height:1.8}
 @media(max-width:900px){.store-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.store-toolbar{align-items:stretch;flex-direction:column}.store-search{max-width:360px}}
 @media(max-width:600px){.hero h1{font-size:clamp(54px,15vw,76px)!important}.store-grid{grid-template-columns:1fr}.store-media{height:190px}.store-intro{grid-template-columns:1fr auto}.store-intro>strong{font-size:25px}.store-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.store-filter{padding:12px 7px;font-size:7px}.store-search{max-width:none}.accessory-note{display:block;padding:22px}.accessory-note>a{display:inline-block;margin-top:8px}.store-copy h3{font-size:25px}}
+
+/* VEHICLE STUDIO — premium vehicle-first catalog */
+.vehicle-finder{margin:38px 0 42px;padding:34px;background:linear-gradient(135deg,#111416,#080a0b 72%);border:1px solid #b5966845;position:relative;overflow:hidden}
+.vehicle-finder:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:linear-gradient(transparent,#b59668,transparent)}
+.finder-heading{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:28px}
+.finder-kicker{font-size:8px;letter-spacing:2.2px;color:#b99a6c}
+.finder-heading h3{margin:12px 0 10px;font:500 clamp(28px,4vw,43px)/1.02 var(--display);color:#f0ece4}
+.finder-heading h3 em{color:#c4a77c;font-style:normal}
+.finder-heading p{max-width:690px;margin:0;color:#aaa69e;font-size:10px;line-height:1.9}
+.finder-index{font:500 22px var(--display);color:#c6a77b;white-space:nowrap}.finder-index i{font-style:normal;color:#777}
+.make-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:24px 0}
+.make-tile{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 12px;background:#090b0c;border:1px solid #ffffff1c;color:#d7d1c7;font:600 9px var(--font);text-align:left;cursor:pointer;transition:.22s}
+.make-tile span{color:#927a59}.make-tile:hover,.make-tile.active{background:#b5966817;border-color:#b59668;color:#f0dfc2}
+.finder-controls{display:grid;grid-template-columns:1fr 1fr 1.15fr auto;gap:10px;align-items:end;padding:20px 0;border-block:1px solid #ffffff18}
+.finder-controls label{display:grid;gap:8px;color:#b99a6c;font-size:7px;letter-spacing:1.4px}
+.finder-controls select{width:100%;min-width:0;padding:13px 11px;background:#080a0b;border:1px solid #ffffff24;color:#e8e1d5;font:500 10px var(--font);outline:none}
+.finder-controls select:focus{border-color:#b59668}.finder-controls select:disabled{opacity:.45}
+.finder-submit{height:42px;padding:0 17px;background:#b59668;border:1px solid #d6bd96;color:#090a0b;font:800 8px var(--font);letter-spacing:1px;white-space:nowrap;cursor:pointer}
+.finder-submit span{margin-left:10px}
+.vehicle-showcase{display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:auto auto;gap:12px;margin-top:24px}
+.showcase-photo,.showcase-upgrade{position:relative;min-height:230px;background:#090b0c;border:1px solid #ffffff17;overflow:hidden}
+.showcase-photo{grid-row:span 2;min-height:365px}
+.showcase-photo img,.showcase-upgrade img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;opacity:.82}
+.showcase-upgrade img{object-fit:contain;padding:30px;background:radial-gradient(ellipse,#34302a,#0b0d0e 70%)}
+.showcase-photo:after,.showcase-upgrade:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#030405e8,transparent 55%)}
+.showcase-photo>span,.showcase-upgrade>span{position:absolute;z-index:2;left:15px;bottom:14px;color:#e0cfb0;font-size:7px;letter-spacing:1.5px}
+.showcase-copy{padding:25px;background:#101315;border:1px solid #ffffff17;display:flex;flex-direction:column;justify-content:center}
+.showcase-copy h4{margin:12px 0;font:500 27px/1.08 var(--display);color:#f0ece4}
+.showcase-copy p{margin:0;color:#aaa69e;font-size:9px;line-height:1.9}
+.showcase-facts{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0}
+.showcase-facts span{padding:7px 8px;border:1px solid #ffffff20;color:#c9b99f;font-size:6px;letter-spacing:1px}
+.showcase-cta{align-self:flex-start;padding:12px 14px;border:1px solid #b5966870;color:#e3d2b3;text-decoration:none;font-size:7px;letter-spacing:1px}
+.finder-disclaimer{margin:12px 0 0;color:#77736b;font-size:8px;line-height:1.8}
+.finder-results{margin-top:25px;padding-top:20px;border-top:1px solid #ffffff1a}
+.finder-results-title{display:flex;justify-content:space-between;gap:15px;align-items:center}
+.finder-results-title span{font-size:8px;letter-spacing:1.7px;color:#c4a77c}
+.finder-results-title b{font:500 18px var(--display);color:#e8e0d3}
+.finder-results>p{margin:9px 0 0;color:#aaa69e;font-size:9px;line-height:1.8}
+@media(max-width:900px){.finder-controls{grid-template-columns:1fr 1fr}.make-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:600px){.vehicle-finder{padding:19px;margin:28px 0}.finder-heading{gap:10px}.finder-heading h3{font-size:29px}.finder-heading p{font-size:9px}.finder-index{font-size:17px}.make-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.make-tile{padding:12px 9px;font-size:8px}.finder-controls{grid-template-columns:1fr;gap:10px}.finder-controls select{padding:14px}.finder-submit{width:100%}.vehicle-showcase{grid-template-columns:1fr;grid-template-rows:220px auto 190px}.showcase-photo{grid-row:auto;min-height:220px}.showcase-copy{padding:20px}.showcase-upgrade{min-height:190px}.finder-results-title{align-items:flex-start;flex-direction:column}}
