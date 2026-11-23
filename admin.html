@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#090b10">
+<title>KarTuningKZ — Администрирование</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header><a class="brand" href="index.html"><b>KT</b><span>KARTUNINGKZ <small>ADMIN PANEL</small></span></a><a href="index.html" class="back">← На сайт</a></header>
+<main>
+<section class="intro"><p class="eyebrow">УПРАВЛЕНИЕ МАГАЗИНОМ</p><h1>ЦЕНЫ И <em>ТОВАРЫ.</em></h1><p class="muted">Изменяй стоимость и наличие товаров в одном месте. После подключения базы изменения будут отображаться на сайте для всех посетителей.</p></section>
+<section id="setup" class="notice"><b>Панель ещё не подключена к базе данных.</b><p>Для безопасного входа и сохранения цен нужны настройки Supabase. Не вводи пароль от GitHub или другие личные пароли на этой странице.</p><a href="ADMIN_SETUP.md">Открыть инструкцию по подключению</a></section>
+<section id="login" class="panel">
+<h2>Вход администратора</h2><label>Email<input id="email" type="email" autocomplete="username" placeholder="admin@example.com"></label><label>Пароль<input id="password" type="password" autocomplete="current-password" placeholder="Пароль администратора"></label><button id="loginBtn" disabled>Войти</button><p class="hint" id="loginHint">Сначала владелец проекта подключает Supabase по инструкции.</p>
+</section>
+<section id="manager" class="panel" hidden>
+<div class="toolbar"><h2>Каталог товаров</h2><button id="logoutBtn" class="secondary">Выйти</button></div>
+<form id="productForm" class="product-form">
+<label>Название модели<input id="name" required placeholder="Например, Teyes CC3 2K"></label>
+<label>Категория<select id="category"><option value="Teyes">Teyes</option><option value="Бюджетные">Бюджетные</option></select></label>
+<label>Цена, ₸<input id="price" type="number" min="0" step="1" required placeholder="Например, 125000"></label>
+<label>Старая цена, ₸<input id="oldPrice" type="number" min="0" step="1" placeholder="Необязательно"></label>
+<label class="check"><input id="available" type="checkbox" checked> В наличии</label>
+<button type="submit">Добавить товар</button>
+</form>
+<div id="products" class="products"></div>
+<p class="hint">Сохраняй только проверенные цены и характеристики. Удаление товара убирает его из каталога.</p>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="admin.js"></script>
+</body></html>
