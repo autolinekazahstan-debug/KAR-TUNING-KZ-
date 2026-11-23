@@ -683,3 +683,56 @@ body{background:#030405!important}
 
 /* Keep the in-form WhatsApp recipient picker collapsed until the form is submitted. */
 .wa-submit-choices[hidden]{display:none}
+
+
+/* MOBILE FIX — restore compact proportions on phones */
+@media (max-width: 600px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  img { max-width: 100%; }
+  .hero h1 { font-size: clamp(42px, 11vw, 54px) !important; letter-spacing: -2px; }
+  .hero-visual { height: 205px; }
+  .visual-frame { width: min(82%, 390px); }
+  .visual-chip { font-size: 6px; padding: 6px 8px; }
+
+  /* Vehicle make picker: smaller logos and more compact labels */
+  .vehicle-finder { padding: 16px 13px; margin: 22px 0 28px; }
+  .finder-heading { margin-bottom: 17px; }
+  .finder-heading h3 { font-size: 25px; }
+  .finder-heading p, .showcase-copy p, .finder-disclaimer, .finder-results > p {
+    font-size: 11px; line-height: 1.65;
+  }
+  .make-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 15px 0; }
+  .make-tile { min-width: 0; min-height: 78px; padding: 8px 3px; gap: 5px; }
+  .make-tile .make-logo { width: 31px; height: 31px; }
+  .make-tile .make-name { font-size: 9px; line-height: 1.15; overflow-wrap: anywhere; }
+  .finder-controls label { font-size: 9px; }
+  .finder-controls select { min-height: 46px; padding: 11px; font-size: 15px; }
+  .finder-submit { min-height: 46px; font-size: 11px; }
+  .vehicle-showcase { grid-template-rows: 185px auto 155px; gap: 8px; }
+  .showcase-photo { min-height: 185px; }
+  .showcase-copy { padding: 16px; }
+  .showcase-copy h4 { font-size: 24px; }
+  .showcase-facts { gap: 5px; margin: 12px 0; }
+  .showcase-facts span { font-size: 8px; padding: 6px; }
+  .showcase-upgrade { min-height: 155px; }
+
+  /* Keep product and service photos inside compact, predictable frames */
+  .product-image { height: 155px; padding: 15px; }
+  .product-image img { max-height: 125px; object-fit: contain; }
+  .store-media { height: 145px; }
+  .store-media img { padding: 12px; }
+  .service-photo { height: 170px; }
+  .detail-product-photo { height: 165px; }
+  .detail-product-photo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .section-head > p, .intro-grid p, .install-grid > div > p, .contact-grid > div > p {
+    font-size: 12px; line-height: 1.7;
+  }
+  .store-copy > p { font-size: 12px; line-height: 1.6; }
+  .store-fit { font-size: 10px; }
+}
+@media (max-width: 380px) {
+  .make-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .make-tile .make-logo { width: 29px; height: 29px; }
+  .hero h1 { font-size: 42px !important; }
+  .detail-product-photo { height: 150px; }
+}
