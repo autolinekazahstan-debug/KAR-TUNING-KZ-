@@ -1,4 +1,17 @@
-const menu=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));document.getElementById('year').textContent=new Date().getFullYear();document.getElementById('lead-form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('form-note').textContent='Это пока макет формы: заявки ещё не отправляются. Подключим приём заявок после согласования рабочего номера WhatsApp или другого канала.';});
+const menu=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));document.getElementById('year').textContent=new Date().getFullYear();const whatsappNumbers=['77773074939','77785880745'];
+document.getElementById('lead-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const data=new FormData(e.currentTarget);
+ const message=['Заявка с сайта KarTuningKZ','Имя: '+(data.get('name')||''),'Телефон: '+(data.get('phone')||''),'Автомобиль: '+(data.get('car')||'не указан'),'Запрос: '+(data.get('details')||'не указан')].join('\n');
+ const encoded=encodeURIComponent(message);
+ const chooser=document.createElement('div');
+ chooser.className='wa-submit-choices';
+ chooser.innerHTML='<p>Выбери, на какой номер отправить заявку:</p><a href="https://wa.me/'+whatsappNumbers[0]+'?text='+encoded+'" target="_blank" rel="noopener noreferrer">WhatsApp 1 · +7 777 307 4939 ↗</a><a href="https://wa.me/'+whatsappNumbers[1]+'?text='+encoded+'" target="_blank" rel="noopener noreferrer">WhatsApp 2 · +7 778 588 0745 ↗</a>';
+ const previous=document.querySelector('.wa-submit-choices');
+ if(previous)previous.remove();
+ e.currentTarget.appendChild(chooser);
+ document.getElementById('form-note').textContent='Сообщение подготовлено. Нажми на один из номеров выше и отправь его в открывшемся WhatsApp.';
+});
 const aiLauncher=document.getElementById('ai-launcher');
 const aiPanel=document.getElementById('ai-panel');
 const aiClose=document.getElementById('ai-close');
