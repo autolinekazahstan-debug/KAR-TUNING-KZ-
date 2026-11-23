@@ -2,7 +2,9 @@ const menu=document.querySelector('.menu-btn');const nav=document.querySelector(
 const storeCards=[...document.querySelectorAll('.store-card')];let activeStoreFilter='all',vehicleFilter=null;const storeSearch=document.getElementById('store-search');function filterStore(){const query=(storeSearch?.value||'').trim().toLocaleLowerCase('ru');let visible=0;storeCards.forEach(card=>{const categoryMatch=activeStoreFilter==='all'||card.dataset.category===activeStoreFilter;const searchMatch=!query||(card.dataset.search||'').includes(query);const vehicleMatch=!vehicleFilter||((card.dataset.makes||'').split(',').map(x=>x.trim()).includes(vehicleFilter.make)&&vehicleFilter.tokens.some(token=>(card.dataset.models||'').toLowerCase().includes(token)));card.hidden=!(categoryMatch&&searchMatch&&vehicleMatch);if(!card.hidden)visible++;});const empty=document.getElementById('store-empty');if(empty)empty.hidden=visible!==0;}document.querySelectorAll('.store-filter').forEach(button=>button.addEventListener('click',()=>{activeStoreFilter=button.dataset.storeFilter;document.querySelectorAll('.store-filter').forEach(item=>{const active=item===button;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));});filterStore();}));if(storeSearch)storeSearch.addEventListener('input',filterStore);filterStore();
 document.getElementById('lead-form').addEventListener('submit',e=>{
  e.preventDefault();
- const data=new FormData(e.currentTarget);
+ const form=e.currentTarget;
+ if(!form.reportValidity())return;
+ const data=new FormData(form);
  const value=(key,fallback='не указано')=>String(data.get(key)||'').trim()||fallback;
  const car=[data.get('car_make'),data.get('car_model_year')].filter(Boolean).join(' ');
  const message=[
@@ -18,11 +20,13 @@ document.getElementById('lead-form').addEventListener('submit',e=>{
   value('details','Нужна консультация по услуге'),
   '',
   'Пожалуйста, свяжитесь с клиентом для уточнения деталей.'
- ].join('\n');
- const note=document.getElementById('form-note');
- note.textContent='Открываем WhatsApp с подготовленной заявкой. Проверь текст в чате и нажми «Отправить» — WhatsApp не позволяет сайту отправлять сообщения без подтверждения пользователя.';
- const url='https://wa.me/'+whatsappNumbers[0]+'?text='+encodeURIComponent(message);
- window.location.href=url;
+ ].join('\\n');
+ const encoded=encodeURIComponent(message);
+ document.getElementById('wa-choice-1').href='https://wa.me/'+whatsappNumbers[0]+'?text='+encoded;
+ document.getElementById('wa-choice-2').href='https://wa.me/'+whatsappNumbers[1]+'?text='+encoded;
+ document.getElementById('wa-submit-choices').hidden=false;
+ document.getElementById('form-note').textContent='Выберите номер выше. WhatsApp откроется с готовой заявкой; останется проверить текст и нажать «Отправить».';
+ document.getElementById('wa-submit-choices').scrollIntoView({behavior:'smooth',block:'nearest'});
 });
 const aiLauncher=document.getElementById('ai-launcher');
 const aiPanel=document.getElementById('ai-panel');
