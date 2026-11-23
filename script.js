@@ -1,5 +1,5 @@
 const menu=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));document.getElementById('year').textContent=new Date().getFullYear();const whatsappNumbers=['77773074939','77785880745'];
-const storeCards=[...document.querySelectorAll('.store-card')];let activeStoreFilter='all';const storeSearch=document.getElementById('store-search');function filterStore(){const query=(storeSearch?.value||'').trim().toLocaleLowerCase('ru');let visible=0;storeCards.forEach(card=>{const categoryMatch=activeStoreFilter==='all'||card.dataset.category===activeStoreFilter;const searchMatch=!query||(card.dataset.search||'').includes(query);card.hidden=!(categoryMatch&&searchMatch);if(!card.hidden)visible++;});const empty=document.getElementById('store-empty');if(empty)empty.hidden=visible!==0;}document.querySelectorAll('.store-filter').forEach(button=>button.addEventListener('click',()=>{activeStoreFilter=button.dataset.storeFilter;document.querySelectorAll('.store-filter').forEach(item=>{const active=item===button;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));});filterStore();}));if(storeSearch)storeSearch.addEventListener('input',filterStore);filterStore();
+const storeCards=[...document.querySelectorAll('.store-card')];let activeStoreFilter='all',vehicleFilter=null;const storeSearch=document.getElementById('store-search');function filterStore(){const query=(storeSearch?.value||'').trim().toLocaleLowerCase('ru');let visible=0;storeCards.forEach(card=>{const categoryMatch=activeStoreFilter==='all'||card.dataset.category===activeStoreFilter;const searchMatch=!query||(card.dataset.search||'').includes(query);const vehicleMatch=!vehicleFilter||((card.dataset.makes||'').split(',').map(x=>x.trim()).includes(vehicleFilter.make)&&vehicleFilter.tokens.some(token=>(card.dataset.models||'').toLowerCase().includes(token)));card.hidden=!(categoryMatch&&searchMatch&&vehicleMatch);if(!card.hidden)visible++;});const empty=document.getElementById('store-empty');if(empty)empty.hidden=visible!==0;}document.querySelectorAll('.store-filter').forEach(button=>button.addEventListener('click',()=>{activeStoreFilter=button.dataset.storeFilter;document.querySelectorAll('.store-filter').forEach(item=>{const active=item===button;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));});filterStore();}));if(storeSearch)storeSearch.addEventListener('input',filterStore);filterStore();
 document.getElementById('lead-form').addEventListener('submit',e=>{
  e.preventDefault();
  const data=new FormData(e.currentTarget);
@@ -97,12 +97,13 @@ document.querySelectorAll('.ai-quick button').forEach(button=>button.addEventLis
  function applyVehicle(){
   if(!selectedMake||!selectedModel){document.getElementById('finder-message').textContent='Сначала выберите марку и модель автомобиля.';return;}
   const year=yearSelect.value||'не выбран',model=selectedModel.name;
+  vehicleFilter={make:selectedMake,tokens:model.toLowerCase().split(/[ /]+/).filter(x=>x.length>2)};
   let count=0;
   document.querySelectorAll('.store-card').forEach(card=>{
    const makes=(card.dataset.makes||'').split(',').map(x=>x.trim());
    const models=(card.dataset.models||'').toLowerCase();
    const modelKey=model.toLowerCase().split(/[ /]+/).filter(x=>x.length>2);
-   const fit=makes.includes(selectedMake)&&modelKey.some(token=>models.includes(token));
+   const fit=makes.includes(selectedMake)&&vehicleFilter.tokens.some(token=>models.includes(token));
    card.hidden=!fit;if(fit)count++;
   });
   document.querySelectorAll('.store-filter').forEach(b=>{b.classList.toggle('active',b.dataset.storeFilter==='all');b.setAttribute('aria-pressed',String(b.dataset.storeFilter==='all'));});
