@@ -92,3 +92,29 @@ form select:focus{border-color:var(--gold)}
 .faq-list details[open] summary:after{content:'−'}
 .faq-list details p{max-width:760px;margin:0;padding:0 30px 20px 0;color:#a99d91;font-size:11px;line-height:1.9}
 @media(max-width:600px){.compare-heading{display:block}.compare-heading>p{margin-bottom:0}.catalog-filter{flex:1;padding:10px 7px;font-size:8px}.catalog-compare{padding:16px}.faq-list summary{font-size:12px}}
+
+
+/* Final legibility pass: crisp outlined typography on the black / red / gold theme */
+body{
+  color:#fff8ee;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body :where(p,li,label,small,summary,a,button,input,textarea,select,td,th){
+  -webkit-text-stroke:.12px rgba(255,244,226,.28);
+}
+body :where(h1,h2,h3,h4,.logo,.eyebrow,.section-label,.product-meta,.product-tag,.btn){
+  -webkit-text-stroke:.38px rgba(231,194,123,.58);
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 rgba(0,0,0,.65),0 0 16px rgba(215,173,98,.10);
+}
+body :where(p,li,small,.muted,.source-note,.faq-list details p,.service-card p,.product-info p){
+  color:#d2c8bb;
+}
+body :where(.hero-copy>p,.intro-grid p,.section-head>p,.install-grid>div>p,.contact-grid>div>p){
+  color:#e0d8ce;
+}
+body :where(.nav a,.product-info>a,.faq-list summary,.steps strong){
+  color:#fff4e4;
+}
+::placeholder{color:#a99e91!important;opacity:1}
