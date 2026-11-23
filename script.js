@@ -1,8 +1,9 @@
 const menu=document.querySelector('.menu-btn');const nav=document.querySelector('.nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));document.getElementById('year').textContent=new Date().getFullYear();const whatsappNumbers=['77773074939','77785880745'];
+document.querySelectorAll('.catalog-filter').forEach(button=>button.addEventListener('click',()=>{const filter=button.dataset.filter;document.querySelectorAll('.catalog-filter').forEach(item=>{const active=item===button;item.classList.toggle('active',active);item.setAttribute('aria-pressed',String(active));});document.querySelectorAll('.product-card').forEach(card=>{card.hidden=filter==='budget'||(filter==='teyes'&&card.dataset.category!=='teyes');});const budget=document.getElementById('budget-panel');if(budget)budget.hidden=filter==='teyes';const compare=document.querySelector('.catalog-compare');if(compare)compare.hidden=filter==='budget';}));
 document.getElementById('lead-form').addEventListener('submit',e=>{
  e.preventDefault();
  const data=new FormData(e.currentTarget);
- const message=['Заявка с сайта KarTuningKZ','Имя: '+(data.get('name')||''),'Телефон: '+(data.get('phone')||''),'Автомобиль: '+(data.get('car')||'не указан'),'Запрос: '+(data.get('details')||'не указан')].join('\n');
+ const message=['Заявка с сайта KarTuningKZ','Имя: '+(data.get('name')||''),'Телефон: '+(data.get('phone')||''),'Автомобиль: '+[data.get('car_make'),data.get('car_model_year')].filter(Boolean).join(' ')+' (если не указан — уточнить у клиента)','Бюджет: '+(data.get('budget')||'не указан'),'Запрос: '+(data.get('details')||'не указан')].join('\n');
  const encoded=encodeURIComponent(message);
  const chooser=document.createElement('div');
  chooser.className='wa-submit-choices';
